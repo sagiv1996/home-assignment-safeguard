@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:safeguard_home_assignment/view/pages/home_page.dart';
+import 'package:safeguard_home_assignment/view/home_page/home_page.dart';
 
 void main() {
   runApp(const WeatherApp());
