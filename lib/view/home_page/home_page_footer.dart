@@ -48,7 +48,7 @@ class HomePageFooter extends StatelessWidget {
           children: [
             _elementIntoRow(
                 Icon(
-                  Icons.sunny,
+                  Icons.wb_sunny_outlined,
                   color: Colors.amber[200],
                   size: 30,
                 ),
@@ -56,7 +56,7 @@ class HomePageFooter extends StatelessWidget {
                 DateFormat(DateFormat.HOUR24_MINUTE).format(weather.sunrise!)),
             _elementIntoRow(
                 const Icon(
-                  Icons.nightlight,
+                  Icons.nightlight_outlined,
                   color: Colors.blueAccent,
                   size: 30,
                 ),
@@ -70,7 +70,7 @@ class HomePageFooter extends StatelessWidget {
           children: [
             _elementIntoRow(
                 const Icon(
-                  Icons.device_thermostat,
+                  Icons.device_thermostat_outlined,
                   color: Colors.red,
                   size: 30,
                 ),
@@ -78,7 +78,7 @@ class HomePageFooter extends StatelessWidget {
                 "${weather.tempMax!.celsius!.round()} °C"),
             _elementIntoRow(
                 const Icon(
-                  Icons.device_thermostat,
+                  Icons.device_thermostat_outlined,
                   color: Color.fromARGB(255, 188, 124, 200),
                   size: 30,
                 ),
@@ -92,7 +92,7 @@ class HomePageFooter extends StatelessWidget {
           children: [
             _elementIntoRow(
               const Icon(
-                Icons.speed,
+                Icons.speed_outlined,
                 color: Color.fromARGB(255, 242, 250, 158),
                 size: 30,
               ),
