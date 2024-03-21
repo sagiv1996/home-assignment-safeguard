@@ -45,7 +45,7 @@ class _SearchPageState extends State<SearchPage> {
         onPressed: () async {
           Position position = await Geolocator.getCurrentPosition();
           _mapController.move(
-              LatLng(position.latitude, position.longitude), 30);
+              LatLng(position.latitude, position.longitude), 10);
         },
       ),
     );

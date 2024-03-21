@@ -52,14 +52,30 @@ class HomePageBody extends StatelessWidget {
             style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.w300),
           ),
-          TextButton(
-              onPressed: () => context.push("/search"),
-              child: const Text("Change location")),
-          TextButton(
-              onPressed: () => context
-                  .read<WeatherProvider>()
-                  .fetchWeatherByCurrentPosition(),
-              child: const Text("Fetch to my location")),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              IconButton(
+                  onPressed: () => context
+                      .read<WeatherProvider>()
+                      .fetchWeatherByCurrentPosition(),
+                  icon: const Icon(
+                    Icons.location_searching,
+                    color: Colors.white,
+                  )),
+              TextButton.icon(
+                  onPressed: () => context.push("/search"),
+                  icon: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                  label: const Text(
+                    "Change location",
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w500),
+                  ))
+            ],
+          ),
         ],
       ),
     );
