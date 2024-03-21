@@ -4,50 +4,34 @@ import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
+import 'package:safeguard_home_assignment/providers/map_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
+import 'package:safeguard_home_assignment/view/page_loading.dart';
 
-class SearchPage extends StatefulWidget {
+class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
-  @override
-  State<SearchPage> createState() => _SearchPageState();
-}
 
-class _SearchPageState extends State<SearchPage> {
-  final MapController _mapController = new MapController();
   @override
   Widget build(BuildContext context) {
+    bool isLoading = context.watch<MapProvider>().isLoading;
+    if (isLoading) return const PageLoading();
+    Position position = context.watch<MapProvider>().position!;
     return Scaffold(
-      body: FlutterMap(
-          mapController: _mapController,
-          options: MapOptions(
-            onTap: (tapPosition, point) {
-              context
-                  .read<WeatherProvider>()
-                  .fetchWeatherByLatLng(point.latitude, point.longitude);
-              context.push("/");
-            },
-            initialCenter: LatLng(0, 0),
-            initialZoom: 1,
-            minZoom: 0,
-            maxZoom: 19,
+        body: FlutterMap(
+            options: MapOptions(
+                onTap: (tapPosition, point) {
+                  context
+                      .read<WeatherProvider>()
+                      .fetchWeatherByLatLng(point.latitude, point.longitude);
+                  context.push("/");
+                },
+                initialCenter: LatLng(position.latitude, position.longitude),
+                initialZoom: 8),
+            children: [
+          TileLayer(
+            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            userAgentPackageName: 'com.example.app',
           ),
-          children: [
-            TileLayer(
-              urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-              userAgentPackageName: 'com.example.app',
-            ),
-          ]),
-      floatingActionButton: IconButton(
-        icon: const Icon(
-          Icons.location_searching,
-          color: Colors.blue,
-        ),
-        onPressed: () async {
-          Position position = await Geolocator.getCurrentPosition();
-          _mapController.move(
-              LatLng(position.latitude, position.longitude), 10);
-        },
-      ),
-    );
+        ]));
   }
 }

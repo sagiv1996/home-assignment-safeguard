@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:safeguard_home_assignment/providers/map_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
 import 'package:weather/weather.dart';
 
@@ -64,7 +65,10 @@ class HomePageBody extends StatelessWidget {
                     color: Colors.white,
                   )),
               TextButton.icon(
-                  onPressed: () => context.push("/search"),
+                  onPressed: () {
+                    context.read<MapProvider>().getPosition();
+                    context.push("/search");
+                  },
                   icon: const Icon(
                     Icons.search,
                     color: Colors.white,

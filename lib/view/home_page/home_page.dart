@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
 import 'package:safeguard_home_assignment/view/home_page/home_page_body.dart';
 import 'package:safeguard_home_assignment/view/home_page/home_page_footer.dart';
+import 'package:safeguard_home_assignment/view/page_loading.dart';
 import 'package:weather/weather.dart';
 import 'package:weather_animation/weather_animation.dart';
 
@@ -41,29 +42,20 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Weather? weather = context.watch<WeatherProvider>().weather;
     bool? isLoading = context.watch<WeatherProvider>().isLoading;
+    if (isLoading) return const PageLoading();
     return Scaffold(
-      body: Builder(builder: (context) {
-        if (isLoading) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (weather == null) {
-          const Card(child: Text("ERROR!!!!!"));
-        }
-        return Stack(
-          children: [
-            SizedBox(
-              height: MediaQuery.sizeOf(context).height,
-              width: MediaQuery.sizeOf(context).width,
-              child: WeatherSceneWidget(
-                weatherScene: _getWeatherIcon(weather!.weatherConditionCode!),
-              ),
-            ),
-            const HomePageBody(),
-            const HomePageFooter(),
-          ],
-        );
-      }),
-    );
+        body: Stack(
+      children: [
+        SizedBox(
+          height: MediaQuery.sizeOf(context).height,
+          width: MediaQuery.sizeOf(context).width,
+          child: WeatherSceneWidget(
+            weatherScene: _getWeatherIcon(weather!.weatherConditionCode!),
+          ),
+        ),
+        const HomePageBody(),
+        const HomePageFooter(),
+      ],
+    ));
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:safeguard_home_assignment/providers/map_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
 import 'package:safeguard_home_assignment/view/home_page/home_page.dart';
 import 'package:provider/provider.dart';
@@ -30,6 +31,7 @@ class WeatherApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => WeatherProvider()),
+        ChangeNotifierProvider(create: (context) => MapProvider()),
       ],
       child: MaterialApp.router(
           routerConfig: router,
