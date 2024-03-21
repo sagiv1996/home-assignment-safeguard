@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
@@ -19,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    context.read<WeatherProvider>().fetchWeather();
+    context.read<WeatherProvider>().fetchWeatherByCurrentPosition();
   }
 
   WeatherScene _getWeatherIcon(int code) {

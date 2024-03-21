@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
@@ -51,6 +52,9 @@ class HomePageBody extends StatelessWidget {
             style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.w300),
           ),
+          TextButton(
+              onPressed: () => context.push("/search"),
+              child: const Text("Change location")),
         ],
       ),
     );
