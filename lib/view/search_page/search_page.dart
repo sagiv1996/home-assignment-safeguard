@@ -24,7 +24,7 @@ class _SearchPageState extends State<SearchPage> {
               context
                   .read<WeatherProvider>()
                   .fetchWeatherByLatLng(point.latitude, point.longitudeInRad);
-              context.replace("/");
+              context.push("/");
             },
             initialCenter: LatLng(0, 0),
             initialZoom: 1,

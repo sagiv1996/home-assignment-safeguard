@@ -11,9 +11,13 @@ class WeatherProvider extends ChangeNotifier {
   Weather? weather;
   WeatherProvider();
 
-  Future<void> fetchWeatherByCurrentPosition() async {
+  Future<void> initData() async {
     isLoading = true;
     if (weather != null) return;
+    await fetchWeatherByCurrentPosition();
+  }
+
+  Future<void> fetchWeatherByCurrentPosition() async {
     await Geolocator.requestPermission();
     Position position = await Geolocator.getCurrentPosition();
     await fetchWeatherByLatLng(position.latitude, position.longitude);

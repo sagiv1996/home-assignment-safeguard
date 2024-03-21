@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    context.read<WeatherProvider>().fetchWeatherByCurrentPosition();
+    context.read<WeatherProvider>().initData();
   }
 
   WeatherScene _getWeatherIcon(int code) {
@@ -44,7 +44,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Builder(builder: (context) {
         if (isLoading) {
-          return const CircularProgressIndicator();
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
         } else if (weather == null) {
           const Card(child: Text("ERROR!!!!!"));
         }

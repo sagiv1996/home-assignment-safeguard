@@ -55,6 +55,11 @@ class HomePageBody extends StatelessWidget {
           TextButton(
               onPressed: () => context.push("/search"),
               child: const Text("Change location")),
+          TextButton(
+              onPressed: () => context
+                  .read<WeatherProvider>()
+                  .fetchWeatherByCurrentPosition(),
+              child: const Text("Fetch to my location")),
         ],
       ),
     );
