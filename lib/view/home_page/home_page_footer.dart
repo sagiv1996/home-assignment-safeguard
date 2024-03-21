@@ -47,21 +47,21 @@ class HomePageFooter extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             _elementIntoRow(
-                const Icon(
+                Icon(
                   Icons.sunny,
-                  color: Colors.yellow,
-                  size: 50,
+                  color: Colors.amber[200],
+                  size: 30,
                 ),
                 "Sunrise",
-                DateFormat(DateFormat.HOUR24_MINUTE).format(weather.sunset!)),
+                DateFormat(DateFormat.HOUR24_MINUTE).format(weather.sunrise!)),
             _elementIntoRow(
                 const Icon(
                   Icons.nightlight,
                   color: Colors.blueAccent,
-                  size: 50,
+                  size: 30,
                 ),
                 "sunset",
-                DateFormat(DateFormat.HOUR_MINUTE).format(weather.sunrise!)),
+                DateFormat(DateFormat.HOUR24_MINUTE).format(weather.sunset!)),
           ],
         ),
         _customDivider(),
@@ -72,7 +72,7 @@ class HomePageFooter extends StatelessWidget {
                 const Icon(
                   Icons.device_thermostat,
                   color: Colors.red,
-                  size: 50,
+                  size: 30,
                 ),
                 "Max temp",
                 "${weather.tempMax!.celsius!.round()} °C"),
@@ -80,7 +80,7 @@ class HomePageFooter extends StatelessWidget {
                 const Icon(
                   Icons.device_thermostat,
                   color: Color.fromARGB(255, 188, 124, 200),
-                  size: 50,
+                  size: 30,
                 ),
                 "Min temp",
                 "${weather.tempMin!.celsius!.round()} °C"),
@@ -93,8 +93,8 @@ class HomePageFooter extends StatelessWidget {
             _elementIntoRow(
               const Icon(
                 Icons.speed,
-                color: Colors.limeAccent,
-                size: 50,
+                color: Color.fromARGB(255, 242, 250, 158),
+                size: 30,
               ),
               "Wind speed",
               "${weather.windSpeed!.round()} km",
@@ -102,8 +102,8 @@ class HomePageFooter extends StatelessWidget {
             _elementIntoRow(
               const Icon(
                 Icons.sunny_snowing,
-                color: Color.fromARGB(255, 45, 66, 73),
-                size: 50,
+                color: Color.fromARGB(255, 145, 103, 111),
+                size: 30,
               ),
               "Humidity",
               "${weather.humidity!.round()} km",
