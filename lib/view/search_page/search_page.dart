@@ -23,7 +23,7 @@ class _SearchPageState extends State<SearchPage> {
             onTap: (tapPosition, point) {
               context
                   .read<WeatherProvider>()
-                  .fetchWeatherByLatLng(point.latitude, point.longitudeInRad);
+                  .fetchWeatherByLatLng(point.latitude, point.longitude);
               context.push("/");
             },
             initialCenter: LatLng(0, 0),
@@ -45,7 +45,7 @@ class _SearchPageState extends State<SearchPage> {
         onPressed: () async {
           Position position = await Geolocator.getCurrentPosition();
           _mapController.move(
-              LatLng(position.latitude, position.longitude), 10);
+              LatLng(position.latitude, position.longitude), 30);
         },
       ),
     );
