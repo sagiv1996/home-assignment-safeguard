@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:safeguard_home_assignment/providers/error_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
 import 'package:safeguard_home_assignment/view/error_page.dart';
 import 'package:safeguard_home_assignment/view/home_page/home_page_body.dart';
@@ -31,7 +32,10 @@ class HomePage extends StatelessWidget {
     bool isLoading = weatherProvider.isLoading;
     bool hasError = weatherProvider.hasError;
     if (isLoading) return const PageLoading();
-    if (hasError) return const ErrorPage();
+    if (hasError) {
+      context.read<ErrorProvider>().setData();
+      return const ErrorPage();
+    }
     Weather weather = weatherProvider.weather!;
     return Scaffold(
         body: Stack(

@@ -84,7 +84,6 @@ class ErrorPage extends StatelessWidget {
                 ),
                 TextButton(
                     onPressed: () {
-                      context.read<ErrorProvider>().setData();
                       context
                           .read<WeatherProvider>()
                           .fetchWeatherByCurrentPosition();
