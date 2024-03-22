@@ -6,7 +6,7 @@ import 'package:safeguard_home_assignment/providers/weather_provider.dart';
 import 'package:safeguard_home_assignment/view/home_page/home_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:safeguard_home_assignment/view/search_page/search_page.dart';
+import 'package:safeguard_home_assignment/view/search_page.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
