@@ -4,6 +4,13 @@ import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
 import 'package:weather/weather.dart';
 
+const Padding _customDivider = Padding(
+  padding: EdgeInsets.symmetric(vertical: 6),
+  child: Divider(
+    color: Colors.white70,
+  ),
+);
+
 class HomePageFooter extends StatelessWidget {
   const HomePageFooter({
     super.key,
@@ -28,12 +35,6 @@ class HomePageFooter extends StatelessWidget {
         ),
       );
 
-  Padding _customDivider() => const Padding(
-        padding: EdgeInsets.symmetric(vertical: 6),
-        child: Divider(
-          color: Colors.white70,
-        ),
-      );
   @override
   Widget build(BuildContext context) {
     Weather weather = context.watch<WeatherProvider>().weather!;
@@ -42,7 +43,7 @@ class HomePageFooter extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          _customDivider(),
+          _customDivider,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -74,7 +75,7 @@ class HomePageFooter extends StatelessWidget {
               )
             ],
           ),
-          _customDivider(),
+          _customDivider,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -105,7 +106,7 @@ class HomePageFooter extends StatelessWidget {
               ),
             ],
           ),
-          _customDivider(),
+          _customDivider,
         ],
       ),
     );
