@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:safeguard_home_assignment/providers/base_provider.dart';
 
-class MapProvider extends ChangeNotifier {
-  bool isLoading = false;
-  Position? position;
-  MapProvider();
+class MapProvider extends BaseProvider {
+  Position? _position;
+
+  Position? get position => _position;
+
+  void setPosition(Position position) {
+    _position = position;
+  }
 
   getPosition() async {
-    isLoading = true;
+    setLoading(true);
     await Geolocator.requestPermission();
     Position position = await Geolocator.getCurrentPosition();
-    this.position = position;
-    isLoading = false;
+    setPosition(position);
+    setLoading(false);
     notifyListeners();
   }
 }

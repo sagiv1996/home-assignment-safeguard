@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:safeguard_home_assignment/providers/error_provider.dart';
 import 'package:safeguard_home_assignment/providers/map_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
 import 'package:safeguard_home_assignment/view/error_page.dart';
@@ -33,6 +34,7 @@ class WeatherApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => WeatherProvider()),
         ChangeNotifierProvider(create: (context) => MapProvider()),
+        ChangeNotifierProvider(create: (context) => ErrorProvider()),
       ],
       child: MaterialApp.router(
           routerConfig: router,
