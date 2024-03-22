@@ -6,7 +6,7 @@ import 'package:safeguard_home_assignment/providers/error_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
 import 'package:safeguard_home_assignment/view/page_loading.dart';
 
-const globalTextStyle = TextStyle(
+const _globalTextStyle = TextStyle(
   fontSize: 16,
   fontWeight: FontWeight.w300,
 );
@@ -56,7 +56,7 @@ class ErrorPage extends StatelessWidget {
                     if (!serviceEnabled) {
                       return const Text(
                         "Please activate the GPS services on your device",
-                        style: globalTextStyle,
+                        style: _globalTextStyle,
                         textAlign: TextAlign.center,
                       );
                     }
@@ -66,7 +66,7 @@ class ErrorPage extends StatelessWidget {
                           const Text(
                             "Permission is required to access the location of the device.",
                             textAlign: TextAlign.center,
-                            style: globalTextStyle,
+                            style: _globalTextStyle,
                           ),
                           TextButton(
                               onPressed: () =>
@@ -79,7 +79,7 @@ class ErrorPage extends StatelessWidget {
                     return const Text(
                         "We encountered an error, please try again later",
                         textAlign: TextAlign.center,
-                        style: globalTextStyle);
+                        style: _globalTextStyle);
                   },
                 ),
                 TextButton(
