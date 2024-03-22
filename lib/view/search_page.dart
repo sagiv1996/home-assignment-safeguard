@@ -3,8 +3,10 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
+import 'package:safeguard_home_assignment/providers/error_provider.dart';
 import 'package:safeguard_home_assignment/providers/map_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
+import 'package:safeguard_home_assignment/view/error_page.dart';
 import 'package:safeguard_home_assignment/view/page_loading.dart';
 
 class SearchPage extends StatelessWidget {
@@ -14,7 +16,12 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     MapProvider mapProvider = context.watch<MapProvider>();
     bool isLoading = mapProvider.isLoading;
+    bool hasError = mapProvider.hasError;
     if (isLoading) return const PageLoading();
+    if (hasError) {
+      context.read<ErrorProvider>().setData();
+      return const ErrorPage();
+    }
     LatLng latLng = mapProvider.latLng;
     return Scaffold(
         body: FlutterMap(
