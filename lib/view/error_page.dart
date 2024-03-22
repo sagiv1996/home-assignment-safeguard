@@ -6,6 +6,11 @@ import 'package:safeguard_home_assignment/providers/error_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
 import 'package:safeguard_home_assignment/view/page_loading.dart';
 
+const globalTextStyle = TextStyle(
+  fontSize: 16,
+  fontWeight: FontWeight.w300,
+);
+
 class ErrorPage extends StatelessWidget {
   const ErrorPage({super.key});
 
@@ -16,7 +21,9 @@ class ErrorPage extends StatelessWidget {
     if (isLoading) return const PageLoading();
 
     bool serviceEnabled = errorProvider.serviceEnabled;
-    LocationPermission permission = context.watch<ErrorProvider>().permission!;
+    bool permissionIsDenied =
+        context.watch<ErrorProvider>().permission!.name.contains("denied");
+
     return Scaffold(
         body: Center(
       child: Card(
@@ -44,23 +51,37 @@ class ErrorPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Text(
-                  !serviceEnabled
-                      ? "Please activate the GPS services on your device"
-                      : "We encountered an error, please try again later",
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w300,
-                  ),
+                Builder(
+                  builder: (context) {
+                    if (!serviceEnabled) {
+                      return const Text(
+                        "Please activate the GPS services on your device",
+                        style: globalTextStyle,
+                        textAlign: TextAlign.center,
+                      );
+                    }
+                    if (permissionIsDenied) {
+                      return Column(
+                        children: [
+                          const Text(
+                            "Permission is required to access the location of the device.",
+                            textAlign: TextAlign.center,
+                            style: globalTextStyle,
+                          ),
+                          TextButton(
+                              onPressed: () =>
+                                  Geolocator.openLocationSettings(),
+                              child:
+                                  const Text("Click here to add permissions"))
+                        ],
+                      );
+                    }
+                    return const Text(
+                        "We encountered an error, please try again later",
+                        textAlign: TextAlign.center,
+                        style: globalTextStyle);
+                  },
                 ),
-                if (permission.name == "denied" ||
-                    permission.name == "deniedForever")
-                  TextButton(
-                      onPressed: () {
-                        Geolocator.openLocationSettings();
-                      },
-                      child: const Text("Click here to add permissions")),
                 TextButton(
                     onPressed: () {
                       context
