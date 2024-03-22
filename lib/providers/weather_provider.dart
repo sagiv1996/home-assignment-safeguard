@@ -9,6 +9,7 @@ WeatherFactory wf = WeatherFactory(apiKey);
 class WeatherProvider extends ChangeNotifier {
   bool isLoading = false;
   Weather? weather;
+  bool hasError = false;
   WeatherProvider();
 
   Future<void> initData() async {
@@ -18,10 +19,15 @@ class WeatherProvider extends ChangeNotifier {
   }
 
   Future<void> fetchWeatherByCurrentPosition() async {
-    isLoading = true;
-    await Geolocator.requestPermission();
-    Position position = await Geolocator.getCurrentPosition();
-    await fetchWeatherByLatLng(position.latitude, position.longitude);
+    try {
+      Position position = await Geolocator.getCurrentPosition();
+      await fetchWeatherByLatLng(position.latitude, position.longitude);
+    } catch (e) {
+      hasError = true;
+    } finally {
+      isLoading = false;
+      notifyListeners();
+    }
   }
 
   Future<void> fetchWeatherByLatLng(double latitude, double longitude) async {
@@ -30,7 +36,7 @@ class WeatherProvider extends ChangeNotifier {
       Weather weather = await wf.currentWeatherByLocation(latitude, longitude);
       this.weather = weather;
     } catch (error) {
-      print("Error! ${error}");
+      hasError = true;
     } finally {
       isLoading = false;
       notifyListeners();

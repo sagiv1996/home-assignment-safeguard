@@ -28,10 +28,10 @@ class SearchPage extends StatelessWidget {
                 initialCenter: LatLng(position.latitude, position.longitude),
                 initialZoom: 8),
             children: [
-          TileLayer(
-            urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-            userAgentPackageName: 'com.example.app',
-          ),
-        ]));
+              TileLayer(
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                userAgentPackageName: 'com.example.app',
+              ),
+            ]));
   }
 }

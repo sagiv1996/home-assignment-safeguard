@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
+import 'package:safeguard_home_assignment/view/error_page.dart';
 import 'package:safeguard_home_assignment/view/home_page/home_page_body.dart';
 import 'package:safeguard_home_assignment/view/home_page/home_page_footer.dart';
 import 'package:safeguard_home_assignment/view/page_loading.dart';
@@ -40,9 +41,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Weather? weather = context.watch<WeatherProvider>().weather;
-    bool? isLoading = context.watch<WeatherProvider>().isLoading;
+    bool isLoading = context.watch<WeatherProvider>().isLoading;
+    bool hasError = context.watch<WeatherProvider>().hasError;
     if (isLoading) return const PageLoading();
+    if (hasError) return const ErrorPage();
+    Weather weather = context.watch<WeatherProvider>().weather!;
     return Scaffold(
         body: Stack(
       children: [
@@ -50,7 +53,7 @@ class _HomePageState extends State<HomePage> {
           height: MediaQuery.sizeOf(context).height,
           width: MediaQuery.sizeOf(context).width,
           child: WeatherSceneWidget(
-            weatherScene: _getWeatherIcon(weather!.weatherConditionCode!),
+            weatherScene: _getWeatherIcon(weather.weatherConditionCode!),
           ),
         ),
         const HomePageBody(),
