@@ -1,22 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:safeguard_home_assignment/providers/base_provider.dart';
 
+const LatLng telAvivLatLng = LatLng(32.109333, 34.855499);
+
 class MapProvider extends BaseProvider {
-  Position? _position;
+  LatLng _latLng = telAvivLatLng;
 
-  Position? get position => _position;
+  LatLng get latLng => _latLng;
 
-  void setPosition(Position position) {
-    _position = position;
-  }
-
-  getPosition() async {
-    setLoading(true);
-    await Geolocator.requestPermission();
-    Position position = await Geolocator.getCurrentPosition();
-    setPosition(position);
-    setLoading(false);
-    notifyListeners();
+  void setLatLng(LatLng latLng) {
+    _latLng = latLng;
   }
 }

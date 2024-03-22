@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/map_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
@@ -66,7 +67,8 @@ class HomePageBody extends StatelessWidget {
                   )),
               TextButton.icon(
                   onPressed: () {
-                    context.read<MapProvider>().getPosition();
+                    context.read<MapProvider>().setLatLng(
+                        LatLng(weather.latitude!, weather.longitude!));
                     context.push("/search");
                   },
                   icon: const Icon(

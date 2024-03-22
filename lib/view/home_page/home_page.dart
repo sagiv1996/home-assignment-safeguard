@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
 import 'package:safeguard_home_assignment/view/error_page.dart';
@@ -11,19 +8,8 @@ import 'package:safeguard_home_assignment/view/page_loading.dart';
 import 'package:weather/weather.dart';
 import 'package:weather_animation/weather_animation.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<WeatherProvider>().initData();
-  }
 
   WeatherScene _getWeatherIcon(int code) {
     switch (code) {
@@ -41,11 +27,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isLoading = context.watch<WeatherProvider>().isLoading;
-    bool hasError = context.watch<WeatherProvider>().hasError;
+    WeatherProvider weatherProvider = context.watch<WeatherProvider>();
+    bool isLoading = weatherProvider.isLoading;
+    bool hasError = weatherProvider.hasError;
     if (isLoading) return const PageLoading();
     if (hasError) return const ErrorPage();
-    Weather weather = context.watch<WeatherProvider>().weather!;
+    Weather weather = weatherProvider.weather!;
     return Scaffold(
         body: Stack(
       children: [

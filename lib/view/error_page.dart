@@ -3,28 +3,19 @@ import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/error_provider.dart';
+import 'package:safeguard_home_assignment/providers/weather_provider.dart';
 import 'package:safeguard_home_assignment/view/page_loading.dart';
 
-class ErrorPage extends StatefulWidget {
+class ErrorPage extends StatelessWidget {
   const ErrorPage({super.key});
 
   @override
-  State<ErrorPage> createState() => _ErrorPageState();
-}
-
-class _ErrorPageState extends State<ErrorPage> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<ErrorProvider>().initData();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    bool isLoading = context.watch<ErrorProvider>().isLoading;
+    ErrorProvider errorProvider = context.watch<ErrorProvider>();
+    bool isLoading = errorProvider.isLoading;
     if (isLoading) return const PageLoading();
 
-    bool serviceEnabled = context.watch<ErrorProvider>().serviceEnabled;
+    bool serviceEnabled = errorProvider.serviceEnabled;
     LocationPermission permission = context.watch<ErrorProvider>().permission!;
     return Scaffold(
         body: Center(
@@ -38,13 +29,13 @@ class _ErrorPageState extends State<ErrorPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(
+                const Icon(
                   Icons.error,
                   color: Colors.red,
                   size: 48,
                 ),
-                SizedBox(height: 16),
-                Text(
+                const SizedBox(height: 16),
+                const Text(
                   "Oops! We have an error!",
                   textAlign: TextAlign.center,
                   style: TextStyle(
@@ -52,13 +43,13 @@ class _ErrorPageState extends State<ErrorPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 Text(
                   !serviceEnabled
                       ? "Please activate the GPS services on your device"
                       : "We encountered an error, please try again later",
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w300,
                   ),
@@ -69,12 +60,15 @@ class _ErrorPageState extends State<ErrorPage> {
                       onPressed: () {
                         Geolocator.openLocationSettings();
                       },
-                      child: Text("Click here to add permissions")),
+                      child: const Text("Click here to add permissions")),
                 TextButton(
                     onPressed: () {
-                      context.push("/");
+                      context
+                          .read<WeatherProvider>()
+                          .fetchWeatherByCurrentPosition();
+                      context.replace("/");
                     },
-                    child: Text("Refresh")),
+                    child: const Text("Refresh")),
               ],
             ),
           ),

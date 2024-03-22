@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:safeguard_home_assignment/providers/map_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
 import 'package:weather/weather.dart';
 
@@ -29,31 +27,6 @@ class HomePageFooter extends StatelessWidget {
           ],
         ),
       );
-  // width: 100,
-  // child: Row(
-  //   children: [
-  //     Container(alignment: Alignment.centerLeft, child: Text(label)),
-  // icon,
-  // Text(
-  //   label,
-  //   textAlign: TextAlign.end,
-  // ),
-  // Column(
-  //   children: [
-  //     Text(label,
-  //         textAlign: TextAlign.right,
-  //         style: const TextStyle(
-  //           color: Colors.white,
-  //           fontWeight: FontWeight.w300,
-  //         )),
-  //     Text(value,
-  //         textAlign: TextAlign.justify,
-  //         style: const TextStyle(
-  //             color: Colors.white, fontWeight: FontWeight.w700))
-  //   ],
-  // ),
-  // ],
-  // ),
 
   Padding _customDivider() => const Padding(
         padding: EdgeInsets.symmetric(vertical: 6),

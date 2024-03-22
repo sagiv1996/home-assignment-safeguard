@@ -1,8 +1,11 @@
-import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:safeguard_home_assignment/providers/base_provider.dart';
 
 class ErrorProvider extends BaseProvider {
+  ErrorProvider() {
+    setData();
+  }
+
   bool _serviceEnabled = false;
   LocationPermission? _permission;
 
@@ -17,7 +20,7 @@ class ErrorProvider extends BaseProvider {
     _permission = permission;
   }
 
-  Future<void> initData() async {
+  Future<void> setData() async {
     setLoading(true);
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     setServiceEnabled(serviceEnabled);
