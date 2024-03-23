@@ -1,7 +1,7 @@
 # safeguard_home_assignment
 
-A project in Flutter that allows weather data at the moment in different locations by choice.
-The project was carried out as part of a homework assignment for the safeGuard company.
+A Flutter app that gives the user accurate current weather in a desirable location.
+The project was carried out as part of a home assignment for the safeGuard company.
 
 ## Getting Started
 
