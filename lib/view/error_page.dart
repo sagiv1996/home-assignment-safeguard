@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/error_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
-import 'package:safeguard_home_assignment/view/page_loading.dart';
+import 'package:safeguard_home_assignment/view/loading_page.dart';
 
 const _globalTextStyle = TextStyle(
   fontSize: 16,
@@ -18,7 +18,7 @@ class ErrorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     ErrorProvider errorProvider = context.watch<ErrorProvider>();
     bool isLoading = errorProvider.isLoading;
-    if (isLoading) return const PageLoading();
+    if (isLoading) return const LoadingPage();
 
     bool serviceEnabled = errorProvider.serviceEnabled;
     bool permissionIsDenied =

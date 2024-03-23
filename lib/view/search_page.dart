@@ -7,7 +7,7 @@ import 'package:safeguard_home_assignment/providers/error_provider.dart';
 import 'package:safeguard_home_assignment/providers/map_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_provider.dart';
 import 'package:safeguard_home_assignment/view/error_page.dart';
-import 'package:safeguard_home_assignment/view/page_loading.dart';
+import 'package:safeguard_home_assignment/view/loading_page.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
@@ -17,7 +17,7 @@ class SearchPage extends StatelessWidget {
     MapProvider mapProvider = context.watch<MapProvider>();
     bool isLoading = mapProvider.isLoading;
     bool hasError = mapProvider.hasError;
-    if (isLoading) return const PageLoading();
+    if (isLoading) return const LoadingPage();
     if (hasError) {
       context.read<ErrorProvider>().setData();
       return const ErrorPage();
