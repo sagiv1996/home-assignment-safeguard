@@ -38,7 +38,9 @@ class HomePage extends StatelessWidget {
             weatherScene: backgroundAnimation,
           ),
         ),
-        HomePageBody(weather: weather, actions: Row(
+        HomePageBody(
+          weather: weather,
+          actions: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               IconButton(
@@ -73,7 +75,8 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ],
-          ),),
+          ),
+        ),
         HomePageFooter(weather: weather),
       ],
     ));
