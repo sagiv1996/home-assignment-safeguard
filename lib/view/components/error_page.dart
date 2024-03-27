@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/error_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_factory_provider.dart';
-import 'package:safeguard_home_assignment/view/loading_page.dart';
+import 'package:safeguard_home_assignment/view/components/loading_page.dart';
 
 const _globalTextStyle = TextStyle(
   fontSize: 16,

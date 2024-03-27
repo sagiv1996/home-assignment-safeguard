@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
-import 'package:safeguard_home_assignment/providers/weather_factory_provider.dart';
 import 'package:weather/weather.dart';
 
 const Padding _customDivider = Padding(
@@ -12,8 +10,10 @@ const Padding _customDivider = Padding(
 );
 
 class HomePageFooter extends StatelessWidget {
+  final Weather weather;
   const HomePageFooter({
     super.key,
+    required this.weather,
   });
 
   Widget _elementIntoRow(Icon icon, String label, String value) => SizedBox(
@@ -37,7 +37,6 @@ class HomePageFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Weather weather = context.watch<WeatherProvider>().weather!;
     return Padding(
       padding: const EdgeInsets.only(bottom: 15),
       child: Column(
@@ -63,7 +62,7 @@ class HomePageFooter extends StatelessWidget {
                     size: 30,
                   ),
                   "Max temp",
-                  "${weather.tempMax!.celsius!.round()} °C"),
+                  "${weather.tempMax!.celsius!.round()}"),
               _elementIntoRow(
                 const Icon(
                   Icons.speed_outlined,

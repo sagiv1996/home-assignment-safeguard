@@ -8,11 +8,12 @@ import 'package:safeguard_home_assignment/providers/weather_factory_provider.dar
 import 'package:weather/weather.dart';
 
 class HomePageBody extends StatelessWidget {
-  const HomePageBody({super.key});
+  final Weather weather;
+  final Row actions;
+  const HomePageBody({super.key, required this.weather, required this.actions});
 
   @override
   Widget build(BuildContext context) {
-    Weather weather = context.watch<WeatherProvider>().weather!;
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: Column(
@@ -54,34 +55,7 @@ class HomePageBody extends StatelessWidget {
             style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.w300),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                  onPressed: () => context
-                      .read<WeatherProvider>()
-                      .fetchWeatherByCurrentPosition(),
-                  icon: const Icon(
-                    Icons.location_searching,
-                    color: Colors.white,
-                  )),
-              TextButton.icon(
-                  onPressed: () {
-                    context.read<MapProvider>().setLatLng(
-                        LatLng(weather.latitude!, weather.longitude!));
-                    context.push("/search");
-                  },
-                  icon: const Icon(
-                    Icons.search,
-                    color: Colors.white,
-                  ),
-                  label: const Text(
-                    "Change location",
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w500),
-                  ))
-            ],
-          ),
+          actions,
         ],
       ),
     );
