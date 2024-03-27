@@ -5,7 +5,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/error_provider.dart';
 import 'package:safeguard_home_assignment/providers/map_provider.dart';
-import 'package:safeguard_home_assignment/providers/weather_provider.dart';
+import 'package:safeguard_home_assignment/providers/weather_factory_provider.dart';
 import 'package:safeguard_home_assignment/view/error_page.dart';
 import 'package:safeguard_home_assignment/view/loading_page.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/error_provider.dart';
-import 'package:safeguard_home_assignment/providers/weather_provider.dart';
+import 'package:safeguard_home_assignment/providers/weather_factory_provider.dart';
 import 'package:safeguard_home_assignment/view/error_page.dart';
 import 'package:safeguard_home_assignment/view/home_page/home_page_body.dart';
 import 'package:safeguard_home_assignment/view/home_page/home_page_footer.dart';

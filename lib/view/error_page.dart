@@ -3,7 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/error_provider.dart';
-import 'package:safeguard_home_assignment/providers/weather_provider.dart';
+import 'package:safeguard_home_assignment/providers/weather_factory_provider.dart';
 import 'package:safeguard_home_assignment/view/loading_page.dart';
 
 const _globalTextStyle = TextStyle(

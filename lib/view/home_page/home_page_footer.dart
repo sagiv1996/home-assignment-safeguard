@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:safeguard_home_assignment/providers/weather_provider.dart';
+import 'package:safeguard_home_assignment/providers/weather_factory_provider.dart';
 import 'package:weather/weather.dart';
 
 const Padding _customDivider = Padding(
