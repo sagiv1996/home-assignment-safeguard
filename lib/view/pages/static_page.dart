@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import 'package:safeguard_home_assignment/providers/map_provider.dart';
-import 'package:safeguard_home_assignment/providers/weather_static_data.dart';
+import 'package:safeguard_home_assignment/providers/weather_static_data_provider.dart';
 import 'package:safeguard_home_assignment/view/components/home_page_body.dart';
 import 'package:safeguard_home_assignment/view/components/home_page_footer.dart';
 import 'package:weather/weather.dart';
@@ -14,7 +14,7 @@ class StaticPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    WeatherStaticData weatherData = context.watch<WeatherStaticData>();
+    WeatherStaticDataProvider weatherData = context.watch<WeatherStaticDataProvider>();
     WeatherScene backgroundAnimation = weatherData.getWeatherIcon(0);
     Weather weather = weatherData.weather!;
 

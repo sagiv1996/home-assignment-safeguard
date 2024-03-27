@@ -3,8 +3,8 @@ import 'package:safeguard_home_assignment/providers/interfaces/weather_interface
 import 'package:weather/weather.dart';
 import 'package:weather_animation/src/model/scenes.dart';
 
-class WeatherStaticData extends BaseProvider implements WeatherInterface {
-  WeatherStaticData() {
+class WeatherStaticDataProvider extends BaseProvider implements WeatherInterface {
+  WeatherStaticDataProvider() {
     Weather weather = Weather({
       "coord": {"lon": 35.1983, "lat": 31.7602},
       "weather": [

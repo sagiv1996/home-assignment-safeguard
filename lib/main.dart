@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:safeguard_home_assignment/providers/error_provider.dart';
 import 'package:safeguard_home_assignment/providers/map_provider.dart';
-import 'package:safeguard_home_assignment/providers/weather_static_data.dart';
+import 'package:safeguard_home_assignment/providers/weather_static_data_provider.dart';
 import 'package:safeguard_home_assignment/providers/weather_factory_provider.dart';
 import 'package:safeguard_home_assignment/view/pages/static_page.dart';
 import 'package:safeguard_home_assignment/view/pages/home_page.dart';
@@ -41,7 +41,8 @@ class WeatherApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => WeatherStaticData()),
+        ChangeNotifierProvider(
+            create: (context) => WeatherStaticDataProvider()),
         ChangeNotifierProvider(create: (context) => WeatherProvider()),
         ChangeNotifierProvider(create: (context) => MapProvider()),
         ChangeNotifierProvider(create: (context) => ErrorProvider()),
