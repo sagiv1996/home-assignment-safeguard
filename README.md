@@ -34,17 +34,20 @@ In order to run the code make sure you have an updated version of Flutter.
 
 #### The file architecture
 
-1. providers - A folder that contains all the provider files that exist.
+1. providers - A folder containing all the provider files that exist with their interfaces.
 2. view - A folder containing all the files related to visualization in the code.
-   - home_page - The folder contains the files related to the home page.
-     1. home_page - The main component, the component contains the background of the page, and the home_body and home_footer.
-     2. home_page_body - The component contains weather information.
-     3. home_page_footer - Contains the footer of the page.
-   - search_page - A page containing the world map, when you select a place on the map, the system shows the weather in the selected place on the home_page.
-   - error_page - Custom error messages for the following situations:
-     1. The GPS is not available.
-     2. Location permission denied.
-     3. Unknown error.
+   1. pages: The folder contains all the pages that exist in the application.
+      1. home_page: Home screen, displays weather data in current location.
+      2. search_page - A page containing the world map, when you select a place on the map, the system shows the weather in the selected place on the home_page.
+      3. static_page - displays constant data.
+   2. components:
+      1. home_page_body - The component contains weather information.
+      2. home_page_footer - Contains the footer of the page.
+      3. error_page - Custom error messages for the following situations:
+         1. The GPS is not available.
+         2. Location permission denied.
+         3. Unknown error.
+         4. loading_page - Loading indicator page.
 3. main - Definition of all the routes and use of the providers.
 
 #### concluding words
